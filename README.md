@@ -1,8 +1,5 @@
 # Fail2Ban Prometheus Exporter
 
-[![Pipeline](https://gitlab.com/hectorjsmith/fail2ban-prometheus-exporter/badges/main/pipeline.svg)](https://gitlab.com/hectorjsmith/fail2ban-prometheus-exporter)
-[![Go Report Card](https://goreportcard.com/badge/gitlab.com/hectorjsmith/fail2ban-prometheus-exporter)](https://goreportcard.com/report/gitlab.com/hectorjsmith/fail2ban-prometheus-exporter)
-
 Collect metrics from a running fail2ban instance.
 
 ## Table of Contents
@@ -31,7 +28,6 @@ $ fail2ban_exporter --collector.f2b.socket=/var/run/fail2ban/fail2ban.sock --web
 2022/02/20 09:54:06 ready
 ```
 
-Binary files for each release can be found on the [releases](https://gitlab.com/hectorjsmith/fail2ban-prometheus-exporter/-/releases) page.
 
 There is also an [example systemd service file](/_examples/systemd/fail2ban_exporter.service) included in the repository.
 This is a starting point to run the exporter as a service.
@@ -44,16 +40,15 @@ docker run -d \
     --name "fail2ban-exporter" \
     -v /var/run/fail2ban:/var/run/fail2ban:ro \
     -p "9191:9191" \
-    registry.gitlab.com/hectorjsmith/fail2ban-prometheus-exporter:latest
+    antlac1/fail2ban-prometheus-exporter:latest
 ```
 
 **Docker compose**
 
 ```
-version: "2"
 services:
   exporter:
-    image: registry.gitlab.com/hectorjsmith/fail2ban-prometheus-exporter:latest
+    image: antlac1/fail2ban-prometheus-exporter:latest
     volumes:
     - /var/run/fail2ban/:/var/run/fail2ban:ro
     ports:
@@ -61,7 +56,7 @@ services:
 ```
 
 Use the `:latest` tag to get the latest stable release.
-See the [registry page](https://gitlab.com/hectorjsmith/fail2ban-prometheus-exporter/container_registry) for all available tags.
+See the [registry page]([https://hub.docker.com/r/antlac1/fail2ban-prometheus-exporter])) for all available tags.
 
 **NOTE:** While it is possible to mount the `fail2ban.sock` file directly, it is recommended to mount the parent folder instead.
 The `.sock` file is deleted by fail2ban on shutdown and re-created on startup and this causes problems for the docker mount.
@@ -203,7 +198,7 @@ docker run -d \
     -v /path/to/metrics:/app/metrics/:ro \
     -e F2B_COLLECTOR_TEXT_PATH=/app/metrics \
     -p "9191:9191" \
-    registry.gitlab.com/hectorjsmith/fail2ban-prometheus-exporter:latest
+    antlac1/fail2ban-prometheus-exporter:latest
 ```
 
 ## 6. Troubleshooting
