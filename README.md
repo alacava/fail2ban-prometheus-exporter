@@ -56,7 +56,7 @@ services:
 ```
 
 Use the `:latest` tag to get the latest stable release.
-See the [registry page]([https://hub.docker.com/r/antlac1/fail2ban-prometheus-exporter]) for all available tags.
+See the [registry page](https://hub.docker.com/r/antlac1/fail2ban-prometheus-exporter) for all available tags.
 
 **NOTE:** While it is possible to mount the `fail2ban.sock` file directly, it is recommended to mount the parent folder instead.
 The `.sock` file is deleted by fail2ban on shutdown and re-created on startup and this causes problems for the docker mount.
